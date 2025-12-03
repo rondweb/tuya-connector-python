@@ -7,10 +7,10 @@ from tuya_connector import (
     TUYA_LOGGER,
 )
 
-ACCESS_ID = "your-access-id"
-ACCESS_KEY = "your-access-key"
-API_ENDPOINT = "https://openapi.tuyacn.com"
-MQ_ENDPOINT = "wss://mqe.tuyacn.com:8285/"
+ACCESS_ID = "fy7u3kxfsh4x4p5wc9p8"
+ACCESS_KEY = "b2542cf2f4234aee8a354e60059b3029"
+API_ENDPOINT = "https://openapi.tuyaus.com"
+MQ_ENDPOINT = "wss://mqe.tuyaus.com:8285/"
 
 # Enable debug log
 TUYA_LOGGER.setLevel(logging.DEBUG)
@@ -22,17 +22,19 @@ openapi.connect()
 # Call any API from Tuya
 response = openapi.get("/v1.0/statistics-datas-survey", dict())
 
-# Init Message Queue
-open_pulsar = TuyaOpenPulsar(
-    ACCESS_ID, ACCESS_KEY, MQ_ENDPOINT, TuyaCloudPulsarTopic.PROD
-)
-# Add Message Queue listener
-open_pulsar.add_message_listener(lambda msg: print(f"---\nexample receive: {msg}"))
+print(f"api response: {response}")
 
-# Start Message Queue
-open_pulsar.start()
+# # Init Message Queue
+# open_pulsar = TuyaOpenPulsar(
+#     ACCESS_ID, ACCESS_KEY, MQ_ENDPOINT, TuyaCloudPulsarTopic.PROD
+# )
+# # Add Message Queue listener
+# open_pulsar.add_message_listener(lambda msg: print(f"---\nexample receive: {msg}"))
 
-input()
-# Stop Message Queue
-open_pulsar.stop()
+# # Start Message Queue
+# open_pulsar.start()
+
+# input()
+# # Stop Message Queue
+# open_pulsar.stop()
 

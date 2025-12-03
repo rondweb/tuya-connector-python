@@ -65,3 +65,27 @@ If you have any questions, please provide feedback via **Github Issue** or [Tech
 ## License
 
 The `tuya-connector-python` SDK is available under the MIT license. For more information, see the [LICENSE](./LICENSE) file.
+
+## FastAPI Example
+
+This repository includes a small FastAPI wrapper around the SDK located at `example/fastapi_tuya_api.py`.
+
+Run the app (ensure dependencies installed):
+
+```bash
+# install dependencies
+pip install -r requirements.txt
+
+# run with uvicorn
+uvicorn example.fastapi_tuya_api:app --reload --host 0.0.0.0 --port 8000
+```
+
+Available endpoints:
+
+- `GET /health` - basic health check
+- `GET /devices` - list devices (if you set `ids` query param returns details for those device ids)
+- `GET /devices/{device_id}` - details for a single device
+- `POST /devices/commands` - send commands, JSON body: `{ "device_ids": ["id1"], "commands": [{"code":"switch","value":true}] }`
+- `GET /devices/logs?ids=id1,id2` - fetch logs for one or more devices
+
+Configure the Tuya credentials with environment variables `TUYA_API_ENDPOINT`, `TUYA_ACCESS_ID`, `TUYA_ACCESS_KEY` or edit the defaults in the example file.
